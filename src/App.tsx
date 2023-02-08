@@ -1,24 +1,51 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useRef } from 'react';
+import PublicRoutes from './routes/PublicRoutes';
+
+import {
+  RouteProps,
+  Routes,
+  Route
+} from 'react-router-dom';
+import Cookies from 'js-cookie';
+
+import {
+  Provider,
+  createClient,
+  fetchExchange,
+  dedupExchange,
+  subscriptionExchange,
+  cacheExchange
+} from "urql";
+
+// TODO perform cache actions
+//const cache = cacheExchange()
+
+const client = createClient({
+  url: 'http://localhost:4000',
+  fetchOptions: () => {
+    return {
+      headers: {
+        "X-AGORA-STORE-ID": Cookies.get("X-AGORA-STORE-ID") ?? "AAABhUtFyNCsaqQL",
+      }
+    }
+  },
+  exchanges: [
+    dedupExchange,
+    fetchExchange
+  ]
+});
+
 
 function App() {
+  let PublicRouteMap = PublicRoutes;
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider value={client}>
+        <Routes>
+          {[...PublicRouteMap].map((route: RouteProps, i) => <Route key={i} {...route} />)}
+        </Routes>
+      </Provider>
     </div>
   );
 }
