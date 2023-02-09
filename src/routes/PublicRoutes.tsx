@@ -10,23 +10,13 @@
 
 import { RouteProps } from 'react-router-dom';
 import {
-    Categories,
     Home,
-    Products
 } from '../pages';
 
 const PublicRoutes: RouteProps[] = [
     {
         path: '/',
         element: <Home />
-    },
-    {
-        path: 'categories',
-        element: <Categories />
-    },
-    {
-        path: 'products',
-        element: <Products />
     }
 ];
 

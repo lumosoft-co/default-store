@@ -7,9 +7,12 @@ module.exports = {
     colors: {
       "white": "#FFF",
       "primary": "#6559fe",
+      "customn-white": {
+        "200": "#F0F0F0",
+      },
       "custom-gray": {
-        "300": "#f6f8fa",
-        "200": "#E7E7E9"
+        "300": "#A5A5BB",
+        "200": "#E0E8FE"
       },
       "agora": {
         "500": "#6559fe",

@@ -4,12 +4,12 @@ import { useEffect, useMemo } from 'react';
 import { getContext, CATEGORIES_TITLE_QUERY } from '../../graphql';
 import { createGzip } from 'zlib';
 
-type ICategoryTitle = {
+interface ICategoryTitle {
     title: string;
     __typename: string;
 }
 
-type ICategoryResponse = {
+interface ICategoryResponse {
     categories: ICategoryTitle[];
 }
 

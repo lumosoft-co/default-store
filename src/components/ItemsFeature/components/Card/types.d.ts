@@ -1,4 +1,4 @@
-export type IFeatureItem = {
+export interface IFeatureItem  {
     title: string;
     price: string;
     image: string;
