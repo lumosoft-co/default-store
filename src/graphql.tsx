@@ -114,7 +114,17 @@ query Category($category: String!) {
 /**
  * Cart Queries
  */
-export const CART_PRODUCT_QUERY = `
+export const CART_SIZE_QUERY = gql`
+query Cart($cart: ID!) {
+  cart(id: $cart) {
+    items {
+      id
+    }
+  }
+}
+`
+
+export const CART_PRODUCT_QUERY = gql`
 query Cart($cart: ID!) {
   cart(id: $cart) {
     items {
@@ -127,7 +137,7 @@ query Cart($cart: ID!) {
 }
 `
 
-export const CART_CREATE = `
+export const CART_CREATE = gql`
 mutation CartCreate($ign: String!, $uuid: String!, $country: String!, $productId: ID!, $quantity: Int!) {
   cartCreate(
     identity: {

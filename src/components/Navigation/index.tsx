@@ -3,8 +3,16 @@ import { useEffect, useMemo } from 'react';
 import { getContext, NAVIGATION_QUERY } from '../../graphql';
 import { INavigation, INavigationCategory } from './types';
 import { DEFAULT_ICON, DEFAULT_LOGO } from '../../constants';
+import { useNavigate } from 'react-router-dom';
+import { CartIcon } from '../CartIcon';
 
-export const Navigation = () => {
+interface INavigationProps {
+    showCart: () => void;
+}
+
+export const Navigation = (props: INavigationProps) => {
+    const { showCart } = props;
+
     const [{ data, fetching, error }, executeQuery] = useQuery({
         query: NAVIGATION_QUERY,
         context: useMemo(() => {
@@ -35,6 +43,11 @@ export const Navigation = () => {
                         )
                     })}
                 </nav>
+                <div className="float-right">
+                    <a onClick={() => showCart()}>
+                        <CartIcon/>
+                    </a>
+                </div>
             </header>
         </div>
     )
