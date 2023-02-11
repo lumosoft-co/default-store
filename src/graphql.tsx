@@ -2,28 +2,28 @@ import { DocumentNode } from "graphql";
 import { API_URL, SHOP_ID } from "./constants";
 import gql from 'graphql-tag';
 import {
-    createClient,
-    AnyVariables
-  } from "urql";
+  createClient,
+  AnyVariables
+} from "urql";
 
 /**
  * Create urql client
  * */
 export const client = createClient({
-    url: `${API_URL}/graphql`,
+  url: `${API_URL}/graphql`,
 });
 
 /** 
  * Add Agora store header
- */ 
+ */
 export const getContext = () => {
-    return {
-        fetchOptions: {
-            headers: {
-                "X-AGORA-STORE-ID": SHOP_ID
-            }
-        }
+  return {
+    fetchOptions: {
+      headers: {
+        "X-AGORA-STORE-ID": SHOP_ID
+      }
     }
+  }
 }
 
 export const BRANDING_QUERY = gql`
@@ -33,6 +33,30 @@ query {
             logo
             icon
         }
+    }
+}
+`
+
+export const NAVIGATION_QUERY = gql`
+query {
+    navigation {
+      id
+      branding {
+        logo
+        icon
+      }
+      categories {
+        id
+        title
+        handle
+        order
+        subcategories {
+          id
+          title
+          handle
+          order
+        }
+      }
     }
 }
 `
@@ -67,19 +91,6 @@ query Product($product: String!) {
 /**
  * Categories queries
  */
-export const CATEGORIES_TITLE_QUERY = gql`
-query {
-    categories {
-      handle
-      title
-      subcategories {
-        handle
-        title
-      }
-    }
-  }
-`;
-
 export const CATEGORY_QUERY = gql`
 query Category($category: String!) {
     categoryByHandle(handle: $category) {
