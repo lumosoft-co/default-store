@@ -20,7 +20,7 @@ export function getUserFromName(username: string): Promise<[string | undefined, 
                 return [name, id];
             }
             return [undefined, undefined];
-        })
+    });
 }
 
 export const Login = () => {
@@ -43,12 +43,14 @@ export const Login = () => {
     }
     return (
         <div className="">
-            <h1>Login</h1>
+            <h1></h1>
             <input
                 className=""
                 placeholder="Enter your username"
+                onChange={(e) => setInput(e.target.value)}
             />
             <span>{error}</span>
+            <button onClick={() => handleLogin()}>Login</button>
         </div>
     )
 }

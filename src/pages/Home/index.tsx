@@ -1,9 +1,20 @@
-import { Navigation } from "../../components/Navigation"
+import { useState } from "react";
+import { 
+    Navigation,
+    Cart
+} from "../../components";
 
 export const Home = () => {
+    const [showCart, setShowCart] = useState<boolean>(false);
     return (
         <div>
-            <Navigation/>
+            <Navigation
+                showCart={() => setShowCart(true)}
+            />
+            {showCart ? 
+            <section className="">
+                <Cart/>
+            </section> : <></>}
             <section>
 
             </section>

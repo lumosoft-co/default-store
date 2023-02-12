@@ -574,12 +574,28 @@ body{
   visibility: hidden;
 }
 
+.absolute{
+  position: absolute;
+}
+
 .relative{
   position: relative;
 }
 
+.left-0{
+  left: 0px;
+}
+
+.top-0{
+  top: 0px;
+}
+
 .z-50{
   z-index: 50;
+}
+
+.float-right{
+  float: right;
 }
 
 .mx-auto{
@@ -600,12 +616,36 @@ body{
   display: flex;
 }
 
+.grid{
+  display: grid;
+}
+
+.h-6{
+  height: 1.5rem;
+}
+
+.h-2{
+  height: 0.5rem;
+}
+
+.h-5{
+  height: 1.25rem;
+}
+
 .h-11{
   height: 2.75rem;
 }
 
 .h-\[90px\]{
   height: 90px;
+}
+
+.h-48{
+  height: 12rem;
+}
+
+.w-6{
+  width: 1.5rem;
 }
 
 .w-48{
@@ -616,8 +656,20 @@ body{
   width: 90px;
 }
 
+.w-11{
+  width: 2.75rem;
+}
+
 .max-w-\[90rem\]{
   max-width: 90rem;
+}
+
+.grid-cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.flex-row{
+  flex-direction: row;
 }
 
 .items-center{
@@ -628,13 +680,31 @@ body{
   justify-content: space-between;
 }
 
+.rounded-lg{
+  border-radius: 0.5rem;
+}
+
 .object-contain{
   object-fit: contain;
+}
+
+.p-5{
+  padding: 1.25rem;
 }
 
 .py-3{
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.px-10{
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+
+.py-5{
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 
 .pr-5{
@@ -651,6 +721,10 @@ body{
 
 .font-bold{
   font-weight: 700;
+}
+
+.font-black{
+  font-weight: 900;
 }
 
 .text-white{

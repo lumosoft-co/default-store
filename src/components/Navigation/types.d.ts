@@ -19,7 +19,9 @@ export interface INavigationCategory {
 }
 
 export interface INavigation {
-    id: string;
-    branding: IBranding;
-    categories: INavigationCategory[];
+    navigation: {
+        id: string;
+        branding: IBranding;
+        categories: INavigationCategory[];
+    }
 }
