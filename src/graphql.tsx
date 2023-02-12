@@ -137,6 +137,17 @@ query Cart($cart: ID!) {
 }
 `
 
+export const CART_LINE_ADD = gql`
+mutation CartAdd($cartId: ID!, $productId: ID!, $quantity: Int!) {
+  cartLineAdd(cartId: $cartId, line: {
+    product: $productId,
+    quantity: $quantity
+  }) {
+    id
+  }
+}
+`
+
 export const CART_CREATE = gql`
 mutation CartCreate($ign: String!, $uuid: String!, $country: String!, $productId: ID!, $quantity: Int!) {
   cartCreate(

@@ -3,8 +3,6 @@ import { useQuery } from "urql";
 import { CART_SIZE_QUERY, getContext } from "../../graphql";
 import { ICartIcon } from "./types";
 
-
-
 export const CartIcon = () => {
     const [cartSize, setCartSize] = useState<number>(0);
     const cartId = localStorage.getItem("cart");
