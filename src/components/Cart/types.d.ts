@@ -1,3 +1,7 @@
+export interface ICart {
+    
+}
+
 export interface ICartItem {
     id: string;
     product: {

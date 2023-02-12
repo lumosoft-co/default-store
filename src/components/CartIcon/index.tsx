@@ -2,15 +2,16 @@ import { useEffect, useState, useMemo } from "react";
 import { useQuery } from "urql";
 import { CART_SIZE_QUERY, getContext } from "../../graphql";
 import { ICartIcon } from "./types";
+import { useCart } from "../../hooks/useCart";
 
 export const CartIcon = () => {
     const [cartSize, setCartSize] = useState<number>(0);
-    const cartId = localStorage.getItem("cart");
+    const [cart, setCart] = useCart();
 
     const [{ data, fetching, error }, executeQuery] = useQuery({
         query: CART_SIZE_QUERY,
         variables: {
-            cart: cartId ?? "",
+            cart: cart ?? "",
         },
         context: useMemo(() => {
             return getContext();
@@ -18,6 +19,7 @@ export const CartIcon = () => {
     })
 
     useEffect(() => {
+        console.log(data);
         const cart = data as ICartIcon;
         if (cart) {
             setCartSize(cart.items.length);

@@ -3,15 +3,18 @@ import { IAddToCartProps } from "./types"
 import { CART_CREATE, CART_LINE_ADD } from "../../graphql";
 
 export const AddToCart = (props: IAddToCartProps) => {
-    const { ign, uuid, country, productId, quantity } = props;
+    const { productId, quantity } = props;
 
     const cartCreate = useMutation(CART_CREATE);
     const addToCart = useMutation(CART_LINE_ADD);
+
+    const cartCreateMutation = cartCreate[1];
+    const addToCartMutation = addToCart[1];
     const handleCartAdd = (): void => {
         const cartId = localStorage.getItem("cart");
         if (cartId === null) {
             // Create a mutation
-            cartCreate[1]({
+            cartCreateMutation({
                 ...props
             }).then((res) => {
                 const id = res.data as string;
@@ -19,14 +22,16 @@ export const AddToCart = (props: IAddToCartProps) => {
             });
         } else {
             // add to cart from id
-            addToCart[1]({
-                cartId: 
-            })
+            addToCartMutation({
+                cartId: cartId,
+                productId: productId,
+                quantity: quantity,
+            });
         }
     }
     return (
-        <div>
-            <button>Add to cart.</button>
-        </div>
+        <>
+            <button onClick={() => handleCartAdd()}>Add to cart.</button>
+        </>
     )
 }
