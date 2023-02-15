@@ -39,7 +39,7 @@ query {
 
 export const NAVIGATION_QUERY = gql`
 query {
-    navigation {
+    shop {
       id
       branding {
         logo
@@ -64,9 +64,10 @@ query {
 export const POPULAR_ITEMS = gql`
 query {
     topProducts {
+        id
         title
         image
-    	price {
+    	  price {
           price
         }
     }

@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext, IUserContext } from "../../context/UserContext";
 
 export interface IUser {
     username: string;
@@ -12,7 +13,7 @@ export function getUserFromName(username: string): Promise<[string | undefined, 
             mode: "cors"
         })
         .then(out => out.json())
-        .catch(e => {return {} as any})
+        .catch(e => { return {} as any })
         .then(res => {
             const id = res?.data?.player?.id
             const name = res?.data?.player?.username
@@ -20,37 +21,48 @@ export function getUserFromName(username: string): Promise<[string | undefined, 
                 return [name, id];
             }
             return [undefined, undefined];
-    });
+        });
 }
 
 export const Login = () => {
+    const { user, updateUser } = useContext(UserContext) as IUserContext;
+
     const [input, setInput] = useState<string>("");
     const [error, setError] = useState<string>("");
+    const [success, setSuccess] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleLogin = (): void => {
+        setLoading(true);
         const user = getUserFromName(input);
         user.then(([name, id]) => {
             if (name === undefined || id === undefined) {
                 setError("Please enter a valid username.");
                 return;
             }
-            localStorage.setItem("user", JSON.stringify({
+            const user = JSON.stringify({
                 username: name,
                 id: id
-            }))
-        })
+            });
+            updateUser(user); // Update user context
 
-    }
+            setSuccess("Successfully logged in!");
+            setLoading(false)
+        });
+    };
+    
     return (
-        <div className="">
-            <h1></h1>
-            <input
-                className=""
-                placeholder="Enter your username"
-                onChange={(e) => setInput(e.target.value)}
-            />
-            <span>{error}</span>
-            <button onClick={() => handleLogin()}>Login</button>
-        </div>
+        <section className="relative mx-auto max-w-[90rem] h-100">
+            <div className="bg-white rounded-xl p-14">
+                <h1>Login</h1>
+                <input
+                    className=""
+                    placeholder="Enter your username"
+                    onChange={(e) => setInput(e.target.value)}
+                />
+                <span>{error !== "" ? error : success}</span>
+                <button disabled={loading} className="rounded-lg p-5 bg-agora-300 text-agora-500" onClick={() => handleLogin()}>{loading ? "Loading..." : "Login"}</button>
+            </div>
+        </section>
     )
 }

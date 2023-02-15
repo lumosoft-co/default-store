@@ -1,5 +1,8 @@
-export interface IFeatureItem  {
+export interface IFeatureItem {
+    id: string
     title: string;
-    price: string;
     image: string;
+    price: {
+        price: string;
+    }
 }

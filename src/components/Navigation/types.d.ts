@@ -19,7 +19,7 @@ export interface INavigationCategory {
 }
 
 export interface INavigation {
-    navigation: {
+    shop: {
         id: string;
         branding: IBranding;
         categories: INavigationCategory[];

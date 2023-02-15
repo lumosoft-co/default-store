@@ -7,7 +7,7 @@ import { getContext } from "../../graphql"
 import { Card } from "./components/Card";
 
 export const ItemsFeature = (props: IFeatureProps) => {
-    const { title, caption, query, variables } = props;
+    const { title, caption, query, variables, field } = props;
 
     const [{data, fetching, error}, executeQuery] = useQuery({
         query: query,
@@ -17,23 +17,21 @@ export const ItemsFeature = (props: IFeatureProps) => {
         }, []),
     });
 
-    if (fetching) return <p>Loading...</p>
-    if (error) return <p>Oh no... {error.message}</p>;
-
     return (
-        <section>
-            <h1>{title}</h1>
+        <section className="sm:px-6 lg:px-12 relative">
+            <h1 className="font-display w-full text-m-h1 sm:text-d-h2 text-3xl md:text-5xl text-light-gray-500 lg:text-[length:64px] xl:text-d-j font-black">{title}</h1>
             <div className="h-2"/>
             <h2>{caption}</h2>
             <div className="h-5"/>
-            <div className="grid grid-column-1 ">
-                {data.map((item: IFeatureItem) => {
+            <div className={`grid grid-cols-4 gap-4 place-items-center`}>
+                {(!fetching && !error) ? data[field].map((item: IFeatureItem, i: number) => {
                     return (
-                        <Card
-                        {...item}
+                        <Card 
+                            key={i}
+                            {...item}
                         />
                     )
-                })}
+                }) : <div>Loading...</div>}
             </div>
         </section>
     )

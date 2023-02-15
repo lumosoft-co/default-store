@@ -1,12 +1,12 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useContext } from "react";
 import { useQuery } from "urql";
 import { CART_SIZE_QUERY, getContext } from "../../graphql";
 import { ICartIcon } from "./types";
-import { useCart } from "../../hooks/useCart";
+import { CartContext, ICartContext } from "../../context/CartContext";
 
 export const CartIcon = () => {
+    const { cart, updateCart } = useContext(CartContext) as ICartContext;
     const [cartSize, setCartSize] = useState<number>(0);
-    const [cart, setCart] = useCart();
 
     const [{ data, fetching, error }, executeQuery] = useQuery({
         query: CART_SIZE_QUERY,

@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./public/index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
@@ -17,6 +18,9 @@ module.exports = {
       "agora": {
         "500": "#6559fe",
         "300": "#eeedfd"
+      },
+      "theme-color": {
+        "500": "#242132",
       },
     },
     extend: {

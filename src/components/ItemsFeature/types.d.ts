@@ -6,4 +6,5 @@ export interface IFeatureProps {
     caption: string;
     query: DocumentNode;
     variables?: AnyVariables;
+    field: string;
 }
