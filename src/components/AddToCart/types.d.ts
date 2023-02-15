@@ -1,7 +1,10 @@
 export interface IAddToCartProps {
-    ign: string;
-    uuid: string;
-    country: string;
     productId: string;
     quantity: number;
+}
+
+export interface ICartCreate {
+    cartCreate: {
+        id: string
+    }
 }

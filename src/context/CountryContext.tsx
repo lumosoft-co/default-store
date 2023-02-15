@@ -1,21 +1,25 @@
 import React, { ReactElement } from "react";
 
 export interface ICountry {
-    country: string;
+    country: Country;
 }
 
 export interface ICountryContext {
-    showLogIn: boolean;
-    setShowLogIn: (state: boolean) => void;
+    country: Country;
+    setCountry: (country: Country) => void;
+}
+
+export enum Country {
+    US = "US",
 }
 
 export const CountryContext = React.createContext<ICountryContext | null>(null);
 
 const CountryProvider = ({ children }: any) => {
-    const [showLogIn, setShowLogIn] = React.useState<boolean>(false);
+    const [country, setCountry] = React.useState<Country>(Country.US);
 
     return (
-        <CountryContext.Provider value={{ showLogIn, setShowLogIn }}>
+        <CountryContext.Provider value={{ country, setCountry }}>
             {children}
         </CountryContext.Provider>
     );

@@ -1,12 +1,13 @@
 import { useMemo } from "react";
 import { getContext } from "../../graphql";
+import { useContext } from "react";
 
 import { useQuery } from "urql"
 import { CART_QUERY } from "../../graphql"
-import { useCart } from "../../hooks/useCart";
+import { CartContext, ICartContext } from "../../context/CartContext";
 
 export const Cart = () => {
-    const [cart, setCart] = useCart();
+    const { cart, updateCart } = useContext(CartContext) as ICartContext;
 
     const [{ data, fetching, error }, executeQuery] = useQuery({
         query: CART_QUERY,
@@ -18,13 +19,12 @@ export const Cart = () => {
         }, []),
     });
 
-    console.log(data);
     return (
         <div>
             {error ?
                 <div>
                     There is no cart.
-                </div>: 
+                </div> :
                 <div>
                     {data}
                 </div>

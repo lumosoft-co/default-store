@@ -22,11 +22,13 @@ export const CartIcon = () => {
         if (data === undefined || error !== undefined || fetching)
             return;
 
+        console.log(data);
+
         const cartData = data as ICartIcon;
         if (cartData.cart) {
-            setCartSize(cartData.cart.length);
+            setCartSize(cartData.cart.items.length);
         }
-    }, []);
+    }, [data, error, fetching]);
 
     return (
         <>

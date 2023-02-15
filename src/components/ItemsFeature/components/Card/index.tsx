@@ -14,7 +14,10 @@ export const Card = (props: IFeatureItem) => {
               alt={title}
             />
             <h3>{title}</h3>
-            
+            <AddToCart
+                productId={id}
+                quantity={1}
+            />
         </div>
     )
 }

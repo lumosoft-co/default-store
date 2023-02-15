@@ -3,5 +3,7 @@ export interface ICartIconItem {
 }
 
 export interface ICartIcon {
-    cart: IItem[];
+    cart: {
+        items: IItem[];
+    }
 }
