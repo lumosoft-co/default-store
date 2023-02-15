@@ -1,5 +1,5 @@
 export interface ICartIconItem {
-    id: string;
+    quantity: number;
 }
 
 export interface ICartIcon {

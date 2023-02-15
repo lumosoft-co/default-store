@@ -119,7 +119,7 @@ export const CART_SIZE_QUERY = gql`
 query Cart($cart: ID!) {
   cart(id: $cart) {
     items {
-      id
+      quantity
     }
   }
 }

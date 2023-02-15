@@ -9,7 +9,7 @@ const AppProvider = ({ children }: any) => {
             <LoginProvider>
                 <UserProvider>
                     <CountryProvider>
-                    {children}
+                        {children}
                     </CountryProvider> 
                 </UserProvider>
             </LoginProvider>

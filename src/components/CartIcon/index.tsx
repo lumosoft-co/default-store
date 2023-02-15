@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo, useContext } from "react";
 import { useQuery } from "urql";
 import { CART_SIZE_QUERY, getContext } from "../../graphql";
-import { ICartIcon } from "./types";
+import { ICartIcon, ICartIconItem } from "./types";
 import { CartContext, ICartContext } from "../../context/CartContext";
 
 export const CartIcon = () => {
@@ -22,11 +22,13 @@ export const CartIcon = () => {
         if (data === undefined || error !== undefined || fetching)
             return;
 
-        console.log(data);
-
         const cartData = data as ICartIcon;
         if (cartData.cart) {
-            setCartSize(cartData.cart.items.length);
+            var cartCount: number = 0;
+            cartData.cart.items.forEach((item: ICartIconItem, i) => {
+                cartCount += item.quantity;
+            })
+            setCartSize(cartCount);
         }
     }, [data, error, fetching]);
 
