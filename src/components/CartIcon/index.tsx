@@ -16,7 +16,7 @@ export const CartIcon = () => {
         context: useMemo(() => {
             return getContext();
         }, []),
-    })
+    });
 
     useEffect(() => {
         if (data === undefined || error !== undefined || fetching)

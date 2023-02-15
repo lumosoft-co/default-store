@@ -18,7 +18,7 @@ export const ItemsFeature = (props: IFeatureProps) => {
     });
 
     return (
-        <section className="sm:px-6 lg:px-12 relative">
+        <section className="relative">
             <h1 className="font-display w-full text-m-h1 sm:text-d-h2 text-3xl md:text-5xl text-light-gray-500 lg:text-[length:64px] xl:text-d-j font-black">{title}</h1>
             <div className="h-2"/>
             <h2>{caption}</h2>

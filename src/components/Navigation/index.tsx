@@ -39,7 +39,7 @@ export const Navigation = (props: INavigationProps) => {
 
     return (
         <div>
-            <header className="pr-5 sm:px-6 lg:px-12 py-3 md:py-9 flex justify-between items-center text-white">
+            <header className="pr-5 py-3 md:py-9 flex justify-between items-center text-white">
                 <a x-comp="NavLink" aria-label="Remix" aria-current="page" className="active z-50" href="/">
                     <img
                         className="object-contain fadeIn invisible md:visible h-11 w-48 z-50"
