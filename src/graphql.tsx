@@ -65,10 +65,12 @@ export const POPULAR_ITEMS = gql`
 query {
     topProducts {
         id
+        handle
         title
         image
     	  price {
           price
+          listPrice
         }
     }
 }
@@ -92,6 +94,20 @@ query Product($product: String!) {
 /**
  * Categories queries
  */
+export const CATEGORIES_QUERY = gql`
+ query {
+   categories {
+     handle
+     title
+     description
+     subcategories {
+       handle
+       title
+       description
+     }
+   }
+}`
+
 export const CATEGORY_QUERY = gql`
 query Category($category: String!) {
     categoryByHandle(handle: $category) {
@@ -111,6 +127,24 @@ query Category($category: String!) {
     }
   }
 `
+
+export const PRODUCTS_BY_CATEGORY_QUERY = gql`
+query Category($category: String!) {
+    categoryByHandle(handle: $category) {
+      products {
+        id
+        handle
+        title
+        image
+        price {
+          price
+          listPrice
+        }
+      }
+    }
+  }
+`
+
 
 /**
  * Cart Queries

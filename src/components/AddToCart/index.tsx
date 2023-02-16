@@ -44,7 +44,6 @@ export const AddToCart = (props: IAddToCartProps) => {
                 updateCart(cart.cartCreate.id);
             });
         } else {
-            console.log("what the fuck");
             // add to cart from id
             addToCartMutation({
                 cartId: cart,

@@ -1,7 +1,3 @@
-import React, { useState } from 'react';
-import PublicRoutes from './routes/PublicRoutes';
-import UserProvider, { UserContext } from './context/UserContext';
-
 import {
   RouteProps,
   Routes,
@@ -13,15 +9,19 @@ import {
   Provider,
 } from "urql";
 import AppProvider from './context';
+import useRoutes from './hooks/useRoutes';
 
 function App() {
-  const [user, setUser] = useState(localStorage.getItem("user"));
+  const [routes, fetching] = useRoutes();
+
+  console.log(routes);
+
   return (
     <div className="App bg-theme-color-500 h-100 w-100">
       <Provider value={client}>
         <AppProvider>
           <Routes>
-            {PublicRoutes.map((route: RouteProps, i) => <Route key={i} {...route} />)}
+            {!fetching ? routes.map((route: RouteProps, i) => <Route key={i} {...route} />) : []}
           </Routes>
         </AppProvider>
       </Provider>
