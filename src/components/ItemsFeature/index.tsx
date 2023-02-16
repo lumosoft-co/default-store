@@ -6,6 +6,21 @@ import { useMemo } from "react"
 import { getContext } from "../../graphql"
 import { Card } from "./components/Card";
 
+const byString = (o: any , s: string): any => {
+    s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+    s = s.replace(/^\./, '');           // strip a leading dot
+    var a = s.split('.');
+    for (var i = 0, n = a.length; i < n; ++i) {
+        var k = a[i];
+        if (k in o) {
+            o = o[k];
+        } else {
+            return null;
+        }
+    }
+    return o;
+}
+
 export const ItemsFeature = (props: IFeatureProps) => {
     const { title, caption, query, variables, field } = props;
 
@@ -24,7 +39,7 @@ export const ItemsFeature = (props: IFeatureProps) => {
             <h2>{caption}</h2>
             <div className="h-5"/>
             <div className={`grid grid-cols-4 gap-4 place-items-center`}>
-                {(!fetching && !error) ? data[field].map((item: IFeatureItem, i: number) => {
+                {(!fetching && !error) ? byString(data, field)?.map((item: IFeatureItem, i: number) => {
                     return (
                         <Card 
                             key={i}

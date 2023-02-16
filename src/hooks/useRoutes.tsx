@@ -41,13 +41,10 @@ const useRoutes = (): [routes: RouteProps[], fetching: boolean] => {
         }, []),
     });
 
-    console.log(data)
     useEffect(() => {
-        console.log(data);
-        if (data === null || fetching || error !== null) {
+        if (data === null || fetching || error !== undefined) {
             return;
         }
-
         const response = data as ICategories;
 
         const parentCategoryArray: RouteProps[] = response.categories.map((category: ICategory) => {return {
@@ -68,8 +65,9 @@ const useRoutes = (): [routes: RouteProps[], fetching: boolean] => {
             ...routes,
             ...parentCategoryArray
         ]);
-    }, [data, fetching, error, routes]);
+    }, [data, fetching, error]);
 
+    console.log(routes)
     return [routes, fetching];
 }
 

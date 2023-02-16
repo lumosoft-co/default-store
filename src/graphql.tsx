@@ -95,18 +95,19 @@ query Product($product: String!) {
  * Categories queries
  */
 export const CATEGORIES_QUERY = gql`
- query {
-   categories {
-     handle
-     title
-     description
-     subcategories {
-       handle
-       title
-       description
-     }
-   }
-}`
+query {
+  categories {
+    handle
+    title
+    description
+    subcategories {
+      handle
+      title
+      description
+    }
+  }
+}
+`
 
 export const CATEGORY_QUERY = gql`
 query Category($category: String!) {
