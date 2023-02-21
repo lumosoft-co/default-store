@@ -5,7 +5,7 @@ import { INavigation, INavigationCategory } from './types';
 import { DEFAULT_ICON, DEFAULT_LOGO } from '../../constants';
 import { useNavigate } from 'react-router-dom';
 import { CartIcon } from '../CartIcon';
-import { IUserContext, UserContext } from '../../context/UserContext';
+import { CartContext, ICartContext } from "../../context/CartContext";
 
 interface INavigationProps {
     showCart: () => void;
@@ -14,7 +14,7 @@ interface INavigationProps {
 
 export const Navigation = (props: INavigationProps) => {
     const { showCart, showLogin } = props;
-    const { user, updateUser } = useContext(UserContext) as IUserContext;
+    const { cartID, cart, updateCart } = useContext(CartContext) as ICartContext;
 
     const navigate = useNavigate();
     const [response, setResponse] = useState<INavigation>();
@@ -27,7 +27,7 @@ export const Navigation = (props: INavigationProps) => {
     });
 
     const handleLogout = () => {
-        updateUser(null);
+        updateCart(null);
     }
 
     useEffect(() => {
@@ -65,7 +65,7 @@ export const Navigation = (props: INavigationProps) => {
                         <CartIcon/>
                     </a>
                     {
-                        user === null ?
+                        cartID === null ?
                         <a x-comp="PrimaryButtonLink" onClick={() => showLogin()} className="-mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-semibold bg-custom-purple-500 bg-opacity-20 text-custom-purple-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Login</a>
                         : <a x-comp="PrimaryButtonLink" onClick={() => handleLogout()} className="-mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-semibold bg-custom-purple-500 bg-opacity-20 text-custom-purple-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Logout</a>
                     }

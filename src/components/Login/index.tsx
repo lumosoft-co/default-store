@@ -1,5 +1,7 @@
-import { useState, useContext } from "react";
-import { UserContext, IUserContext } from "../../context/UserContext";
+import { useState, useContext, useEffect } from "react";
+import { CartContext, ICartContext } from "../../context/CartContext";
+import { useMutation } from "urql";
+import { CART_CREATE, getContext } from "../../graphql";
 
 export interface IUser {
     username: string;
@@ -25,31 +27,46 @@ export function getUserFromName(username: string): Promise<[string | undefined, 
 }
 
 export const Login = () => {
-    const { user, updateUser } = useContext(UserContext) as IUserContext;
+    const { cartID, cart, updateCart } = useContext(CartContext) as ICartContext;
+
+    const [{data, fetching, error}, executeMutation] = useMutation(CART_CREATE);
 
     const [input, setInput] = useState<string>("");
-    const [error, setError] = useState<string>("");
+    const [loginError, setLoginError] = useState<string>("");
     const [success, setSuccess] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
 
     const handleLogin = (): void => {
+        if (cartID != null) {
+            setLoginError("You are already logged in.");
+            return;
+        }
         setLoading(true);
+
         const user = getUserFromName(input);
         user.then(([name, id]) => {
             if (name === undefined || id === undefined) {
-                setError("Please enter a valid username.");
+                setLoginError("Please enter a valid username.");
                 return;
             }
-            const user = JSON.stringify({
-                username: name,
-                id: id
-            });
-            updateUser(user); // Update user context
+            executeMutation({
+                ign: name,
+                uuid: id
+            }, getContext());
 
             setSuccess("Successfully logged in!");
-            setLoading(false)
+            setLoading(false);
         });
     };
+
+    useEffect(() => {
+        if (data === undefined || error !== undefined || fetching) {
+            return;
+        }
+        updateCart(data.cartCreate.id);
+        setSuccess("Successfully logged in!");
+        setLoading(false);
+    }, [data, error, fetching]);
     
     return (
         <section className="relative mx-auto max-w-[90rem] h-100">
@@ -60,7 +77,7 @@ export const Login = () => {
                     placeholder="Enter your username"
                     onChange={(e) => setInput(e.target.value)}
                 />
-                <span>{error !== "" ? error : success}</span>
+                <span>{loginError !== "" ? loginError : success}</span>
                 <button disabled={loading} className="rounded-lg p-5 bg-agora-300 text-agora-500" onClick={() => handleLogin()}>{loading ? "Loading..." : "Login"}</button>
             </div>
         </section>

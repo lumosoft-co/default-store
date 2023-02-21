@@ -1,30 +1,79 @@
-import React, { ReactElement } from "react";
+import React, { useEffect, useMemo } from "react";
+import { useQuery } from "urql";
+import { CART_QUERY } from "../graphql";
+import { getContext } from "../graphql";
+import { exec } from "child_process";
+
+export interface IUser {
+    username: string;
+    uuid: string;
+}
+
+export interface IItem {
+    product: {
+        handle: string;
+        title: string;
+        image: string;
+    };
+    quantity: number;
+    cost: {
+        actual: string;
+    }
+}
 
 export interface ICart {
-    id: string;
+    cart: {
+        identity: IUser;
+        cost: { actual: number }
+        discounts: string[];
+        items: IItem[];
+    }
 }
 
 export interface ICartContext {
-    cart: string | null;
+    cartID: string | null;
+    cart: ICart | null;
     updateCart: (id: string | null) => void;
 }
 
 export const CartContext = React.createContext<ICartContext | null>(null);
 
 const CartProvider = ({ children }: any) => {
-    const [cart, setCart] = React.useState<string | null>(localStorage.getItem("cart"));
+    const [cartID, setCartID] = React.useState<string | null>(localStorage.getItem("cart"));
+    const [cart, setCart] = React.useState<ICart | null>(null);
 
-    const updateCart = (cart: string | null) => {
-        if (cart != null) {
-            localStorage.setItem("cart", cart);
+    const [{ data, fetching, error }, executeQuery] = useQuery({
+        query: CART_QUERY,
+        variables: {
+            cart: cartID ?? "",
+        },
+        context: useMemo(() => {
+            return getContext();
+        }, [])
+    })
+
+    const updateCart = (id: string | null) => {
+        if (id != null) {
+            localStorage.setItem("cart", id);
         } else {
             localStorage.removeItem("cart");
         }
-        setCart(cart);
+        setCartID(id);
+        executeQuery({
+            cart: id
+        });
     }
 
+    useEffect(() => {
+        if (data === undefined || error !== undefined || fetching) {
+            setCart(null); 
+            return
+        }
+        setCart(data as ICart);
+    }, [data, error, fetching]);
+
     return (
-        <CartContext.Provider value={{ cart, updateCart }}>
+        <CartContext.Provider value={{ cartID, cart, updateCart }}>
             {children}
         </CartContext.Provider>
     )

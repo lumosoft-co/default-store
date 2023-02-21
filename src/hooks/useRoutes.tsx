@@ -67,7 +67,6 @@ const useRoutes = (): [routes: RouteProps[], fetching: boolean] => {
         ]);
     }, [data, fetching, error]);
 
-    console.log(routes)
     return [routes, fetching];
 }
 

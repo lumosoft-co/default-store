@@ -20,7 +20,7 @@ export const Ranks = () => {
     const ranks = data as IRankCategory
     return (
         <section>
-            <h1 className="font-display w-full text-m-h1 sm:text-d-h2 text-3xl md:text-5xl text-light-gray-500 lg:text-[length:64px] xl:text-d-j font-black">{ranks != null ? ranks.categoryByHandle.title : "Loading ..."}</h1>
+            <h1 className="font-display text-light-gray-500 w-full text-m-h1 sm:text-d-h2 text-3xl md:text-5xl text-light-gray-500 lg:text-[length:64px] xl:text-d-j font-black">{ranks != null ? ranks.categoryByHandle.title : "Loading ..."}</h1>
             <div className="h-2" />
             <h2>{ranks != null ? ranks.categoryByHandle.description : "Loading ..."}</h2>
             <div className="h-5" />

@@ -117,6 +117,7 @@ query Category($category: String!) {
       description
       displayType
       products {
+        id
         handle
         title
         price {
@@ -210,19 +211,12 @@ query Cart($cart: ID!) {
 }`
 
 export const CART_CREATE = gql`
-mutation CartCreate($ign: String!, $uuid: String!, $country: String!, $productId: ID!, $quantity: Int!) {
+mutation CartCreate($ign: String!, $uuid: String!) {
   cartCreate(
     identity: {
         username: $ign,
-        uuid: $uuid,
-        countryCode: $country
+        uuid: $uuid
     }
-    lines: [
-      {
-        product: $productId,
-        quantity: $quantity
-      }
-    ]
   ) {
     id
   }
