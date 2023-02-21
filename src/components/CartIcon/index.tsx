@@ -9,12 +9,14 @@ export const CartIcon = () => {
     const [cartSize, setCartSize] = useState<number>(0);
 
     useEffect(() => {
-        if (cart?.cart) {
+        if (cart !== null && cart?.cart !== null && cartID !== null) {
             var cartCount: number = 0;
             cart.cart.items.forEach((item: ICartIconItem, i) => {
                 cartCount += item.quantity;
             })
             setCartSize(cartCount);
+        } else {
+            setCartSize(0);
         }
     }, [cart]);
 

@@ -15,8 +15,6 @@ import { Modal } from "@mui/material";
 export const Products = (props: IProductsPageProps) => {
     const { query, variables, title, caption, field } = props;
     const { showLogIn, setShowLogIn } = useContext(LoginContext) as ILoginContext;
-    const [showCart, setShowCart] = useState<boolean>(false);
-
     return (
         <div className="relative mx-auto max-w-[90rem] h-100">
             <div className="sm:px-6 lg:px-12 relative">
@@ -29,10 +27,7 @@ export const Products = (props: IProductsPageProps) => {
                 <Navigation
                     showLogin={() => setShowLogIn(true)}
                 />
-                {showCart ?
-                    <section className="">
-                        <Cart />
-                    </section> : <></>}
+                <Cart />
                 <ItemsFeature
                     title={title}
                     caption={caption}

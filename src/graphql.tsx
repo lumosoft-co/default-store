@@ -197,6 +197,7 @@ query Cart($cart: ID!) {
     }
     discounts
     items {
+      id
       product {
         handle
         title
@@ -205,6 +206,7 @@ query Cart($cart: ID!) {
       quantity
       cost {
         actual
+        list
       }
     }
   }
@@ -218,6 +220,33 @@ mutation CartCreate($ign: String!, $uuid: String!) {
         uuid: $uuid
     }
   ) {
+    id
+  }
+}
+`
+
+export const CART_LINE_REMOVE = `
+mutation CartRemove($cartId: ID!, $productId: ID!, $quantity: Int!) {
+  cartLineRemove(cartId: $cartId, line: {
+    product: $productId,
+    quantity: $quantity
+  }) {
+    id
+  }
+}
+`
+
+export const CART_LINE_DELETE = `
+mutation CartRemove($cartId: ID!, $lineId: ID!) {
+  cartLineDelete(cartId: $cartId, lineId: $lineId) {
+    id
+  }
+}
+`
+
+export const CART_LINE_UPDATE = `
+mutation CartUpdate($cartId: ID!, $lineId: ID!, $quantity: Int!) {
+  cartLineUpdate(cartId: $cartId, lineId: $lineId, quantity: $quantity) {
     id
   }
 }

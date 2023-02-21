@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Modal } from "@mui/material";
 
 import { CartContext, ICartContext } from "../../context/CartContext";
+import { CartItem } from "./components/CartItem";
 
 export const Cart = () => {
     const {
@@ -28,6 +29,14 @@ export const Cart = () => {
                                     <>
                                         <a className="cursor-pointer" onClick={() => updateCartOpen(false)}>Close</a>
                                         <h1>My Cart ({cart?.cart.items.length})</h1>
+                                        <div className="">
+                                            {cart.cart.items.map((item, i) => {
+                                                return <CartItem
+                                                            key={i}
+                                                            {...item}
+                                                        />
+                                            })}
+                                        </div>
                                     </>
                                     :
                                     <>Loading...</>

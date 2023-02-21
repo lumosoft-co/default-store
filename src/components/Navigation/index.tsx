@@ -5,6 +5,7 @@ import { INavigation, INavigationCategory } from './types';
 import { DEFAULT_ICON, DEFAULT_LOGO } from '../../constants';
 import { CartIcon } from '../CartIcon';
 import { CartContext, ICartContext } from "../../context/CartContext";
+import { Link } from 'react-router-dom';
 
 interface INavigationProps {
     showLogin: () => void;
@@ -60,11 +61,11 @@ export const Navigation = (props: INavigationProps) => {
                     <a x-comp="HeaderLink" href="/" className="text-d-p-sm mx-2 sm:mx-4 text-[16px] md:text-lg last:mr-0 opacity-80 hover:opacity-100 font-bold text-light-gray-500 hover:cursor-pointer">Home</a>
                     {fetching ? "" : response?.shop?.categories?.sort((a, b) => a.order > b.order ? 1 : -1).map((category: INavigationCategory) => {
                         return (
-                            <a x-comp="HeaderLink" href={category.handle} className="text-d-p-sm mx-2 sm:mx-4 text-[16px] md:text-lg last:mr-0 opacity-80 hover:opacity-100 font-bold text-light-gray-500 hover:cursor-pointer">{category.title}</a>
+                            <Link x-comp="HeaderLink" to={`/${category.handle}`} className="text-d-p-sm mx-2 sm:mx-4 text-[16px] md:text-lg last:mr-0 opacity-80 hover:opacity-100 font-bold text-light-gray-500 hover:cursor-pointer">{category.title}</Link>
                         )
                     })}
                 </nav>
-                <div className="float-right flex-row">
+                <div className="float-right flex flex-row">
                     <a className="cursor-pointer" onClick={handleCartClick}>
                         <CartIcon/>
                     </a>

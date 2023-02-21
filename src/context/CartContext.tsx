@@ -9,6 +9,7 @@ export interface IUser {
 }
 
 export interface IItem {
+    id: string;
     product: {
         handle: string;
         title: string;
@@ -17,6 +18,7 @@ export interface IItem {
     quantity: number;
     cost: {
         actual: string;
+        list: string;
     }
 }
 
