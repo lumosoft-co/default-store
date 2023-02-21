@@ -3,20 +3,17 @@ import { useContext, useEffect, useMemo, useState } from 'react';
 import { getContext, NAVIGATION_QUERY } from '../../graphql';
 import { INavigation, INavigationCategory } from './types';
 import { DEFAULT_ICON, DEFAULT_LOGO } from '../../constants';
-import { useNavigate } from 'react-router-dom';
 import { CartIcon } from '../CartIcon';
 import { CartContext, ICartContext } from "../../context/CartContext";
 
 interface INavigationProps {
-    showCart: () => void;
     showLogin: () => void;
 }
 
 export const Navigation = (props: INavigationProps) => {
-    const { showCart, showLogin } = props;
-    const { cartID, cart, updateCart } = useContext(CartContext) as ICartContext;
+    const { showLogin } = props;
 
-    const navigate = useNavigate();
+    const { cartID, updateCartOpen, updateCart } = useContext(CartContext) as ICartContext;
     const [response, setResponse] = useState<INavigation>();
 
     const [{ data, fetching, error }, executeQuery] = useQuery({
@@ -30,10 +27,17 @@ export const Navigation = (props: INavigationProps) => {
         updateCart(null);
     }
 
+    const handleCartClick = () => {
+        if (cartID === null) {
+            showLogin();
+            return;
+        }
+        updateCartOpen(true);
+    }
+
     useEffect(() => {
         if (data === undefined || error !== undefined || fetching) 
             return;
-        
         setResponse(data as INavigation);
     }, [data]);
 
@@ -61,7 +65,7 @@ export const Navigation = (props: INavigationProps) => {
                     })}
                 </nav>
                 <div className="float-right flex-row">
-                    <a onClick={() => showCart()}>
+                    <a className="cursor-pointer" onClick={handleCartClick}>
                         <CartIcon/>
                     </a>
                     {

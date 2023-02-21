@@ -2,7 +2,6 @@ import React, { useEffect, useMemo } from "react";
 import { useQuery } from "urql";
 import { CART_QUERY } from "../graphql";
 import { getContext } from "../graphql";
-import { exec } from "child_process";
 
 export interface IUser {
     username: string;
@@ -33,6 +32,8 @@ export interface ICart {
 export interface ICartContext {
     cartID: string | null;
     cart: ICart | null;
+    cartOpen: boolean;
+    updateCartOpen: (open: boolean) => void;
     updateCart: (id: string | null) => void;
 }
 
@@ -40,6 +41,7 @@ export const CartContext = React.createContext<ICartContext | null>(null);
 
 const CartProvider = ({ children }: any) => {
     const [cartID, setCartID] = React.useState<string | null>(localStorage.getItem("cart"));
+    const [cartOpen, setCartOpen] = React.useState<boolean>(false);
     const [cart, setCart] = React.useState<ICart | null>(null);
 
     const [{ data, fetching, error }, executeQuery] = useQuery({
@@ -50,7 +52,11 @@ const CartProvider = ({ children }: any) => {
         context: useMemo(() => {
             return getContext();
         }, [])
-    })
+    });
+
+    const updateCartOpen = (open: boolean) => {
+        setCartOpen(open);
+    }
 
     const updateCart = (id: string | null) => {
         if (id != null) {
@@ -67,13 +73,13 @@ const CartProvider = ({ children }: any) => {
     useEffect(() => {
         if (data === undefined || error !== undefined || fetching) {
             setCart(null); 
-            return
+            return;
         }
         setCart(data as ICart);
     }, [data, error, fetching]);
 
     return (
-        <CartContext.Provider value={{ cartID, cart, updateCart }}>
+        <CartContext.Provider value={{ cartID, cart, cartOpen, updateCart, updateCartOpen}}>
             {children}
         </CartContext.Provider>
     )

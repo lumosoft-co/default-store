@@ -18,7 +18,6 @@ export const AddToCart = (props: IAddToCartProps) => {
     const addToCartMutation = addToCart[1];
 
     const handleCartAdd = (): void => {
-        console.log("addinig to cart")
         if (cartID == null) {
             setShowLogIn(true); // Show log-in modal
             return;

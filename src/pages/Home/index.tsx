@@ -12,9 +12,6 @@ import { ILoginContext, LoginContext } from "../../context/LoginContext";
 
 export const Home = () => {
     const { showLogIn, setShowLogIn } = useContext(LoginContext) as ILoginContext;
-
-    const [showCart, setShowCart] = useState<boolean>(false);
-
     return (
         <div className="relative mx-auto max-w-[90rem] h-100">
             <div className="sm:px-6 lg:px-12 relative">
@@ -25,13 +22,9 @@ export const Home = () => {
                     <Login />
                 </Modal>
                 <Navigation
-                    showCart={() => setShowCart(true)}
                     showLogin={() => setShowLogIn(true)}
                 />
-                {showCart ?
-                    <section className="">
-                        <Cart />
-                    </section> : <></>}
+                <Cart/>
                 <div className="h-10" />
                 <ItemsFeature
                     title="Popular Items"

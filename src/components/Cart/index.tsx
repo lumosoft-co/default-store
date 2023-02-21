@@ -1,35 +1,44 @@
-import { useMemo } from "react";
-import { getContext } from "../../graphql";
 import { useContext } from "react";
+import { Modal } from "@mui/material";
 
-import { useQuery } from "urql"
-import { CART_QUERY } from "../../graphql"
 import { CartContext, ICartContext } from "../../context/CartContext";
 
 export const Cart = () => {
-    const { cart, updateCart } = useContext(CartContext) as ICartContext;
+    const {
+        cartID,
+        cart,
+        cartOpen,
+        updateCartOpen
+    } = useContext(CartContext) as ICartContext;
 
-    const [{ data, fetching, error }, executeQuery] = useQuery({
-        query: CART_QUERY,
-        variables: {
-            cart: cart ?? ""
-        },
-        context: useMemo(() => {
-            return getContext();
-        }, []),
-    });
+    console.log(cart);
 
     return (
         <div>
-            {error ?
-                <div>
-                    There is no cart.
-                </div> :
-                <div>
-                    {data}
-                </div>
+            {cartOpen ? 
+                <section className="absolute right-0 top-0 bottom-0 min-h-full w-1/4">
+                    <div className="bg-white p-14 h-100">
+                        {cartID === null ?
+                            <div>
+                                There is no cart.
+                            </div> :
+                            <div>
+                                {
+                                    cart !== null ? 
+                                    <>
+                                        <a className="cursor-pointer" onClick={() => updateCartOpen(false)}>Close</a>
+                                        <h1>My Cart ({cart?.cart.items.length})</h1>
+                                    </>
+                                    :
+                                    <>Loading...</>
+                                }
+                                
+                            </div>
+                        }
+                    </div>
+                </section>
+                : <></>
             }
-
         </div>
     )
 }

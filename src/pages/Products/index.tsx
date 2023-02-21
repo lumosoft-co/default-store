@@ -27,7 +27,6 @@ export const Products = (props: IProductsPageProps) => {
                     <Login />
                 </Modal>
                 <Navigation
-                    showCart={() => setShowCart(true)}
                     showLogin={() => setShowLogIn(true)}
                 />
                 {showCart ?
