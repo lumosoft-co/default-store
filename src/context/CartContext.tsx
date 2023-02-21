@@ -11,6 +11,7 @@ export interface IUser {
 export interface IItem {
     id: string;
     product: {
+        id: string;
         handle: string;
         title: string;
         image: string;

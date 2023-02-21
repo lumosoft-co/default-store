@@ -199,6 +199,7 @@ query Cart($cart: ID!) {
     items {
       id
       product {
+        id
         handle
         title
         image

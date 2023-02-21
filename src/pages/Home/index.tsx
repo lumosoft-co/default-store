@@ -24,7 +24,6 @@ export const Home = () => {
                 <Navigation
                     showLogin={() => setShowLogIn(true)}
                 />
-                <Cart/>
                 <div className="h-10" />
                 <ItemsFeature
                     title="Popular Items"
@@ -33,6 +32,7 @@ export const Home = () => {
                     field={"topProducts"}
                 />
                 <Ranks />
+                <Cart/>
             </div>
         </div>
     )

@@ -15,9 +15,9 @@ export const Cart = () => {
     console.log(cart);
 
     return (
-        <div>
+        <>
             {cartOpen ? 
-                <section className="absolute right-0 top-0 bottom-0 min-h-full w-1/4">
+                <section tabIndex={-1} className="absolute right-0 top-0 bottom-0 min-h-full w-2/5">
                     <div className="bg-white p-14 h-100">
                         {cartID === null ?
                             <div>
@@ -37,6 +37,7 @@ export const Cart = () => {
                                                         />
                                             })}
                                         </div>
+                                        <h2>Total: {cart?.cart.cost.actual}</h2>
                                     </>
                                     :
                                     <>Loading...</>
@@ -48,6 +49,6 @@ export const Cart = () => {
                 </section>
                 : <></>
             }
-        </div>
+        </>
     )
 }

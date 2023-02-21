@@ -3,6 +3,8 @@ import { CartContext, ICartContext } from "../../context/CartContext";
 import { useMutation } from "urql";
 import { CART_CREATE, getContext } from "../../graphql";
 
+import { LoginContext, ILoginContext } from "../../context/LoginContext";
+
 export interface IUser {
     username: string;
     id: string;
@@ -28,8 +30,9 @@ export function getUserFromName(username: string): Promise<[string | undefined, 
 
 export const Login = () => {
     const { cartID, cart, updateCart } = useContext(CartContext) as ICartContext;
+    const { showLogIn, setShowLogIn } = useContext(LoginContext) as ILoginContext;
 
-    const [{data, fetching, error}, executeMutation] = useMutation(CART_CREATE);
+    const [{ data, fetching, error }, executeMutation] = useMutation(CART_CREATE);
 
     const [input, setInput] = useState<string>("");
     const [loginError, setLoginError] = useState<string>("");
@@ -67,9 +70,9 @@ export const Login = () => {
         setSuccess("Successfully logged in!");
         setLoading(false);
     }, [data, error, fetching]);
-    
+
     return (
-        <section className="relative mx-auto max-w-[90rem] h-100">
+        <section className="relative w-full h-full mx-auto max-w-2xl md:h-auto">
             <div className="bg-white rounded-xl p-14">
                 <h1>Login</h1>
                 <input
