@@ -42,7 +42,6 @@ export const CartItem = (props: IItem) => {
 
     useEffect(() => {
         if (quantity !== null) {
-            console.log("is this mutation happenbing")
             cartLineUpdateMutation[1]({
                 cartId: cartID,
                 lineId: props.id,

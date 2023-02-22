@@ -91,6 +91,22 @@ query Product($product: String!) {
 }
 `
 
+export const PRODUCTS_BY_TAG = gql`
+query Product($tag: String!) {
+  productsByTag(tag: $tag) {
+    id
+    handle
+    title
+    image
+    description
+    price {
+      price
+      listPrice
+    }
+  }
+}
+`
+
 /**
  * Categories queries
  */
@@ -226,7 +242,7 @@ mutation CartCreate($ign: String!, $uuid: String!) {
 }
 `
 
-export const CART_LINE_REMOVE = `
+export const CART_LINE_REMOVE = gql`
 mutation CartRemove($cartId: ID!, $productId: ID!, $quantity: Int!) {
   cartLineRemove(cartId: $cartId, line: {
     product: $productId,
@@ -237,7 +253,7 @@ mutation CartRemove($cartId: ID!, $productId: ID!, $quantity: Int!) {
 }
 `
 
-export const CART_LINE_DELETE = `
+export const CART_LINE_DELETE = gql`
 mutation CartRemove($cartId: ID!, $lineId: ID!) {
   cartLineDelete(cartId: $cartId, lineId: $lineId) {
     id
@@ -245,7 +261,7 @@ mutation CartRemove($cartId: ID!, $lineId: ID!) {
 }
 `
 
-export const CART_LINE_UPDATE = `
+export const CART_LINE_UPDATE = gql`
 mutation CartUpdate($cartId: ID!, $lineId: ID!, $quantity: Int!) {
   cartLineUpdate(cartId: $cartId, lineId: $lineId, quantity: $quantity) {
     id

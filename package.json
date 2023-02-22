@@ -33,7 +33,7 @@
     "start": "react-scripts start",
     "prebuild": "npm run build:tailwind",
     "build": "react-scripts build",
-    "dev": "run-p watch:tailwind start",
+    "dev": "PORT=3006 run-p watch:tailwind start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

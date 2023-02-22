@@ -9,6 +9,7 @@ import {
 import { POPULAR_ITEMS } from "../../graphql";
 import { Modal } from "@mui/material";
 import { ILoginContext, LoginContext } from "../../context/LoginContext";
+import { Slider } from "../../components";
 
 export const Home = () => {
     const { showLogIn, setShowLogIn } = useContext(LoginContext) as ILoginContext;
@@ -25,6 +26,7 @@ export const Home = () => {
                     showLogin={() => setShowLogIn(true)}
                 />
                 <div className="h-10" />
+                <Slider/>
                 <ItemsFeature
                     title="Popular Items"
                     caption="Explore the community's most loved items"

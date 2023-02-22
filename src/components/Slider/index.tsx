@@ -1,12 +1,29 @@
-import { useState, useEffect } from "react";
-import { IFeature, ISliderProps } from "./types";
+import { useState, useEffect, useMemo } from "react";
+import { IFeature, } from "./types";
 import { Feature } from "./components/Feature";
+import { getContext } from "../../graphql";
 
-export const Slider = (props: ISliderProps) => {
-    const { features } = props;
-    const [page, setPage] = useState(0);
+import { useQuery } from "urql";
+import { PRODUCTS_BY_TAG } from "../../graphql";
+
+export const Slider = () => {
+    const [page, setPage] = useState<number>(0);
+    const [features, setFeatures] = useState<IFeature[] | null>(null);
+
+    const [{ data, fetching, error }, executeQuery] = useQuery({
+        query: PRODUCTS_BY_TAG,
+        variables: {
+            tag: "slideshow"
+        },
+        context: useMemo(() => {
+            return getContext();
+        }, [])
+    });
 
     const handlePageChange = (page: number) => {
+        if (features === null) {
+            return;
+        }
         if (page <= 0) {
             setPage(features.length - 1);
             return;
@@ -19,6 +36,17 @@ export const Slider = (props: ISliderProps) => {
     }
 
     useEffect(() => {
+        if (data === undefined || error !== undefined || fetching) {
+            return;
+        }
+        console.log(data);
+        setFeatures(data.productsByTag);
+    }, [data, error, fetching]);
+
+    useEffect(() => {
+        if (features === null) {
+            return;
+        }
         const timer = setInterval(() => {
             setPage((page + features.length + 1) % features.length);
         }, 5000);
@@ -30,7 +58,7 @@ export const Slider = (props: ISliderProps) => {
 
     return (
         <section>
-            {
+            { features !== null ?
                 features.map((feature: IFeature, i: number) => {
                     return (
                         <div className={"content" + (i < page ? " before" : i > page ? " after" : "")}>
@@ -40,6 +68,7 @@ export const Slider = (props: ISliderProps) => {
                         </div>
                     )
                 })
+                : <div>Loading...</div>
             }
             <div className="flex flex-row">
                 <button onClick={() => handlePageChange(page - 1)}>
@@ -48,7 +77,7 @@ export const Slider = (props: ISliderProps) => {
                     </svg>
                 </button>
                 <div className="flex flex-row">
-                    {features.map((feature: IFeature, i: number) => {
+                    {features !== null ?features.map((feature: IFeature, i: number) => {
 
                         return (
                             <>
@@ -58,7 +87,7 @@ export const Slider = (props: ISliderProps) => {
                             }
                             </>
                         )
-                    })}
+                    }): <div>Loading ...</div>}
                 </div>
                 <button onClick={() => handlePageChange(page + 1)}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
