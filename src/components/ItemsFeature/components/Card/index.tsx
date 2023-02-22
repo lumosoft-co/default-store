@@ -25,6 +25,7 @@ export const Card = (props: IFeatureItem) => {
             />
             <button onClick={() => setViewDetails(true)}>View Details</button>
             <ItemDetails
+                productId={id}
                 handle={handle}
                 viewDetails={viewDetails}
                 setViewDetails={setViewDetails}
