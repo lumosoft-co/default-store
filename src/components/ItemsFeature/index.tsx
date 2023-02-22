@@ -36,7 +36,7 @@ export const ItemsFeature = (props: IFeatureProps) => {
         <section className="relative">
             <h1 className="background-clip font-display text-custom-gray-300 w-full text-m-h1 sm:text-d-h2 text-3xl md:text-5xl text-light-gray-500 lg:text-[length:64px] xl:text-d-j font-black"><span className="title">{title}</span></h1>
             <div className="h-2"/>
-            <h2 className="text-">{caption}</h2>
+            <h2 className="text-custom-gray-300">{caption}</h2>
             <div className="h-5"/>
             <div className={`grid grid-cols-4 gap-4 place-items-center`}>
                 {(!fetching && !error) ? byString(data, field)?.map((item: IFeatureItem, i: number) => {

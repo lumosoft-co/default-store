@@ -2,8 +2,12 @@ import { AddToCart } from "../../../AddToCart";
 import { ItemDetails } from "../../../ItemDetails";
 import { IFeatureItem } from "./types";
 
+import { useState } from "react";
+
 export const Card = (props: IFeatureItem) => {
-    const { id, title, price, image } = props;
+    const { id, title, price, image, handle } = props;
+    const [viewDetails, setViewDetails] = useState<boolean>(false);
+
     return (
         <div className="px-10 py-5 relative">
             <div className="absolute left-0 top-0 p-5 rounded-lg">
@@ -19,7 +23,12 @@ export const Card = (props: IFeatureItem) => {
                 productId={id}
                 quantity={1}
             />
-            <ItemDetails/>
+            <button onClick={() => setViewDetails(true)}>View Details</button>
+            <ItemDetails
+                handle={handle}
+                viewDetails={viewDetails}
+                setViewDetails={setViewDetails}
+            />
         </div>
     )
 }

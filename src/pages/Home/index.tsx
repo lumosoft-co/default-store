@@ -33,7 +33,6 @@ export const Home = () => {
                     query={POPULAR_ITEMS}
                     field={"topProducts"}
                 />
-                <Ranks />
                 <Cart/>
             </div>
         </div>
