@@ -12,6 +12,17 @@
 }
 
 @layer utilities {
+    .background-clip {
+        -webkit-background-clip: text;
+    }
+
+    .title {
+        -webkit-text-fill-color: transparent;
+        background-image: linear-gradient(90deg,#f093fb 0,#f5576c);
+        -webkit-background-clip: text;
+        cursor: auto;
+    }
+
     .slideshow {
         height: 24vw;
         position: relative;
@@ -22,10 +33,17 @@
         flex-direction: row;
         color: white;
         height: 24vw;
-        margin-left: 25vw;
-        margin-right: 25vw;
+        margin-left: 35vw;
+        margin-right: 35vw;
         transition: left 300ms ease-in-out;
         left: 0;
+    }
+
+    .buttons {
+        position: absolute;
+        margin-left: 30vw;
+        margin-right: 30vw;
+        bottom: 0;
     }
 
     .details { 
@@ -44,7 +62,7 @@
         left: -2vw;
         top: -2.5vw;
         position: absolute;
-        width: 30vw;
+        width: 20vw;
     }
 
     .before {
