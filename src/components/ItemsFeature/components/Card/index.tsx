@@ -9,8 +9,8 @@ export const Card = (props: IFeatureItem) => {
     const [viewDetails, setViewDetails] = useState<boolean>(false);
 
     return (
-        <div className="px-10 py-5 relative">
-            <div className="absolute left-0 top-0 p-5 rounded-lg">
+        <div className="px-10 py-5 relative bg-card-background-500 rounded-xl border-4 border-custom-purple-600">
+            <div className="absolute left-0 top-0 p-5 rounded-lg text-white font-black">
                 {price.price}
             </div>
             <img
@@ -18,7 +18,7 @@ export const Card = (props: IFeatureItem) => {
               src={image}
               alt={title}
             />
-            <h3>{title}</h3>
+            <h3 className="font-black opacity-70 text-custom-gray-100">{title}</h3>
             <AddToCart
                 productId={id}
                 quantity={1}
