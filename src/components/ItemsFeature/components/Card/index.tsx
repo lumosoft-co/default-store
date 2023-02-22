@@ -1,4 +1,5 @@
 import { AddToCart } from "../../../AddToCart";
+import { ItemDetails } from "../../../ItemDetails";
 import { IFeatureItem } from "./types";
 
 export const Card = (props: IFeatureItem) => {
@@ -18,6 +19,7 @@ export const Card = (props: IFeatureItem) => {
                 productId={id}
                 quantity={1}
             />
+            <ItemDetails/>
         </div>
     )
 }

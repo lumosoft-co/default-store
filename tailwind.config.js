@@ -22,6 +22,9 @@ module.exports = {
       "theme-color": {
         "500": "#242132",
       },
+      "custom-purple": {
+        "500": "#B189FF"
+      }
     },
     extend: {
       fontFamily: {
