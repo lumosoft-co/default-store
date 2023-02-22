@@ -58,10 +58,10 @@ export const Navigation = (props: INavigationProps) => {
                     />
                 </Link>
                 <nav className="flex fadeIn" aria-label="Main">
-                    <Link x-comp="HeaderLink" to="/" className="text-d-p-sm mx-2 sm:mx-4 text-[16px] md:text-lg last:mr-0 opacity-80 hover:opacity-100 font-bold text-light-gray-500 hover:cursor-pointer">Home</Link>
+                    <Link x-comp="HeaderLink" to="/" className="text-d-p-sm mx-2 sm:mx-4 text-[16px] md:text-lg last:mr-0 hover:opacity-100 font-bold text-custom-gray-600 hover:text-custom-gray-200 hover:cursor-pointer">Home</Link>
                     {fetching ? "" : response?.shop?.categories?.sort((a, b) => a.order > b.order ? 1 : -1).map((category: INavigationCategory) => {
                         return (
-                            <Link x-comp="HeaderLink" to={`/${category.handle}`} className="text-d-p-sm mx-2 sm:mx-4 text-[16px] md:text-lg last:mr-0 opacity-80 hover:opacity-100 font-bold text-light-gray-500 hover:cursor-pointer">{category.title}</Link>
+                            <Link x-comp="HeaderLink" to={`/${category.handle}`} className="text-d-p-sm mx-2 sm:mx-4 text-[16px] md:text-lg last:mr-0 text-custom-gray-600 hover:text-custom-gray-200 font-bold hover:cursor-pointer">{category.title}</Link>
                         )
                     })}
                 </nav>

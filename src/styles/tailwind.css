@@ -30,7 +30,7 @@
     }
 
     .slideshow {
-        height: 24vw;
+        height: 32vw;
         position: relative;
     }
 
@@ -40,36 +40,36 @@
         flex-direction: row;
         color: white;
         height: 24vw;
-        margin-left: 35vw;
-        margin-right: 35vw;
+        margin-left: 25vw;
+        margin-right: 25vw;
         transition: left 300ms ease-in-out;
         left: 0;
     }
 
     .buttons {
         position: absolute;
-        margin-left: 30vw;
-        margin-right: 30vw;
+        margin-left: auto;
+        margin-right: auto;
+        width: 2vw;
+        left: 0;
+        right: 0;
         bottom: 0;
     }
 
     .details { 
         margin-top: 3vw;
-        width: 23vw;
+        width: 31vw;
     }
 
     .image-holder {
-        position: relative;
+        top: -1.5vw;
+        left: 25vw;
+        position: absolute;
         width: 30vw;
     }
 
     .image {
-        position: absolute;
-        width: 33vw;
-        left: -2vw;
-        top: -2.5vw;
-        position: absolute;
-        width: 20vw;
+        width: 25vw;
     }
 
     .before {

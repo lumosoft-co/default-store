@@ -25,8 +25,8 @@ export const Home = () => {
                 <Navigation
                     showLogin={() => setShowLogIn(true)}
                 />
-                <div className="h-10" />
                 <Slider/>
+                <div className="h-10"/>
                 <ItemsFeature
                     title="Popular Items"
                     caption="Explore the community's most loved items"

@@ -28,6 +28,7 @@ export const Products = (props: IProductsPageProps) => {
                     showLogin={() => setShowLogIn(true)}
                 />
                 <Cart />
+                <div className="h-5"/>
                 <ItemsFeature
                     title={title}
                     caption={caption}
