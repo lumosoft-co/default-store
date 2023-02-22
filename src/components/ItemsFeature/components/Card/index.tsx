@@ -9,7 +9,7 @@ export const Card = (props: IFeatureItem) => {
     const [viewDetails, setViewDetails] = useState<boolean>(false);
 
     return (
-        <div className="px-10 py-5 relative bg-card-background-500 rounded-xl border-4 border-custom-purple-600">
+        <div className="px-10 py-5 relative bg-card-background-500 rounded-xl border-4 border-custom-purple-600 h-[23rem]">
             <div className="absolute left-0 top-0 p-5 rounded-lg text-white font-black">
                 {price.price}
             </div>

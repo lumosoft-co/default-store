@@ -6,6 +6,7 @@
 
 @layer base {
     body {
+        overflow-x: hidden;
         @apply font-poppins;
         -moz-osx-font-smoothing: grayscale;
         background-color: #242132;
@@ -32,6 +33,7 @@
         height: 24vw;
         position: relative;
     }
+
     .content {
         position: absolute;
         display: flex;
