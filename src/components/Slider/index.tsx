@@ -57,7 +57,7 @@ export const Slider = () => {
     });
 
     return (
-        <section>
+        <section className="slideshow">
             { features !== null ?
                 features.map((feature: IFeature, i: number) => {
                     return (

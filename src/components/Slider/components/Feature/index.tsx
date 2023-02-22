@@ -12,7 +12,7 @@ export const Feature = (props: IFeature) => {
             </div>
             <div className="image-holder">
                 <img
-                    className="object-contain h-48 w-11"
+                    className="image"
                     src={image}
                     alt={title}
                 />
