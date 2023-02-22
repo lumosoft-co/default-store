@@ -14,7 +14,7 @@ export const Card = (props: IFeatureItem) => {
                 {price.price}
             </div>
             <img
-              className="object-contain h-48 w-11"
+              className="object-contain h-48 w-30"
               src={image}
               alt={title}
             />
