@@ -18,7 +18,7 @@
 
     .title {
         -webkit-text-fill-color: transparent;
-        background-image: linear-gradient(90deg,#f093fb 0,#f5576c);
+        background-image: linear-gradient(90deg,#E0E5FE 0,#B189FF);
         -webkit-background-clip: text;
         cursor: auto;
     }
