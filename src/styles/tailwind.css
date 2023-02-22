@@ -11,3 +11,47 @@
     }
 }
 
+@layer utilities {
+    .slideshow {
+        height: 24vw;
+        position: relative;
+    }
+    .content {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        color: white;
+        height: 24vw;
+        margin-left: 25vw;
+        margin-right: 25vw;
+        transition: left 300ms ease-in-out;
+        left: 0;
+    }
+
+    .details { 
+        margin-top: 3vw;
+        width: 23vw;
+    }
+
+    .image-holder {
+        position: relative;
+        width: 30vw;
+    }
+
+    .image {
+        position: absolute;
+        width: 33vw;
+        left: -2vw;
+        top: -2.5vw;
+        position: absolute;
+        width: 30vw;
+    }
+
+    .before {
+        left: -100vw;
+    }
+
+    .left {
+        left: 100vw;
+    }
+}
