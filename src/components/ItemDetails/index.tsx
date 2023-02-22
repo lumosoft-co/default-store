@@ -35,10 +35,10 @@ export const ItemDetails = (props: IItemDetailsProps) => {
                 onClose={() => setViewDetails(false)}
             >
                 <section className="relative w-full h-full mx-auto max-w-2xl md:h-auto">
-                    <div className="relative bg-theme-color-500 rounded-lg shadow">
+                    <div className="relative bg-theme-color-500 rounded-lg shadow border border-custom-gray-500">
                     { !fetching && details !== undefined ?
                       <>
-                        <div className="flex items-start justify-between p-4 border-b rounded-t border-custom-purple-500">
+                        <div className="flex items-start justify-between p-4">
                             <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                                 {details.productByHandle.title}
                             </h3>
@@ -50,7 +50,7 @@ export const ItemDetails = (props: IItemDetailsProps) => {
                         <div className="p-6 space-y-6">
                             <span dangerouslySetInnerHTML={{__html: details.productByHandle.description}}/>
                         </div>
-                        <div className="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                        <div className="flex items-center p-6">
                             <AddToCart
                                 productId={productId}
                                 quantity={1}

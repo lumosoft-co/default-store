@@ -66,13 +66,13 @@ export const Navigation = (props: INavigationProps) => {
                     })}
                 </nav>
                 <div className="float-right flex flex-row">
-                    <a className="cursor-pointer" onClick={handleCartClick}>
+                    <a className="cursor-pointer mr-5" onClick={handleCartClick}>
                         <CartIcon/>
                     </a>
                     {
                         cartID === null ?
-                        <a x-comp="PrimaryButtonLink" onClick={() => showLogin()} className="-mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-semibold bg-custom-purple-500 bg-opacity-20 text-custom-purple-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Login</a>
-                        : <a x-comp="PrimaryButtonLink" onClick={() => handleLogout()} className="-mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-semibold bg-custom-purple-500 bg-opacity-20 text-custom-purple-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Logout</a>
+                        <a x-comp="PrimaryButtonLink" onClick={() => showLogin()} className="button-background -mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-black text-white-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Login</a>
+                        : <a x-comp="PrimaryButtonLink" onClick={() => handleLogout()} className="button-background -mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-black text-white-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Logout</a>
                     }
                 </div>
             </header>

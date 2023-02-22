@@ -12,8 +12,9 @@ module.exports = {
         "200": "#F0F0F0",
       },
       "custom-gray": {
+        "500": "#6A6A6A",
         "300": "#A5A5BB",
-        "200": "#E0E8FE"
+        "200": "#E0E8FE",
       },
       "agora": {
         "500": "#6559fe",
