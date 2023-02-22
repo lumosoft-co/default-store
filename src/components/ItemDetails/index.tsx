@@ -54,6 +54,7 @@ export const ItemDetails = (props: IItemDetailsProps) => {
                             <AddToCart
                                 productId={productId}
                                 quantity={1}
+                                card={false}
                             />
                         </div>
                         </>

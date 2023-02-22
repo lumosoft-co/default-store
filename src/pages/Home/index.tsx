@@ -34,6 +34,7 @@ export const Home = () => {
                     field={"topProducts"}
                 />
                 <Cart/>
+                <div className="h-12"/>
             </div>
         </div>
     )
