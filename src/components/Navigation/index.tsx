@@ -47,8 +47,8 @@ export const Navigation = (props: INavigationProps) => {
             <header className="pr-5 py-3 md:py-9 flex justify-between items-center text-white">
                 <Link x-comp="NavLink" aria-label="Remix" aria-current="page" className="active" to="/">
                     <img
-                        className="object-contain fadeIn invisible md:visible h-11 w-48"
-                        src={fetching ? "" : (response?.shop?.branding?.icon ?? DEFAULT_LOGO)}
+                        className="object-contain fadeIn invisible md:visible h-20 w-48"
+                        src={fetching ? "" : (response?.shop?.branding?.logo ?? DEFAULT_LOGO)}
                         alt="logo"
                     />
                     <img

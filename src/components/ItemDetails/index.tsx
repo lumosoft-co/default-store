@@ -29,7 +29,7 @@ export const ItemDetails = (props: IItemDetailsProps) => {
 
     const details = data as IItemDetails;
     return (
-        <>
+        <div className="items-center justify-center flex">
             <Modal
                 open={viewDetails}
                 onClose={() => setViewDetails(false)}
@@ -61,6 +61,6 @@ export const ItemDetails = (props: IItemDetailsProps) => {
                     </div>
                 </section>
             </Modal>
-        </>
+        </div>
     )
 }
