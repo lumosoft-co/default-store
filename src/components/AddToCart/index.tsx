@@ -1,20 +1,23 @@
 import { useMutation } from "urql";
 import { IAddToCartProps } from "./types"
 import { CART_LINE_ADD } from "../../graphql";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { CartContext, ICartContext } from "../../context/CartContext";
 import { LoginContext, ILoginContext } from "../../context/LoginContext";
+import { SnackBarContext, ISnackBarContext, MessageType } from '../../context/SnackBar';
 
 import { getContext } from "../../graphql";
 
 export const AddToCart = (props: IAddToCartProps) => {
-    const { cartID, cart, updateCart } = useContext(CartContext) as ICartContext;
-    const { showLogIn, setShowLogIn } = useContext(LoginContext) as ILoginContext;
+    const { cartID } = useContext(CartContext) as ICartContext;
+    const { setShowLogIn } = useContext(LoginContext) as ILoginContext;
+    const { addMessage } = useContext(SnackBarContext) as ISnackBarContext;
 
     const { productId, quantity, card } = props;
 
     const addToCart = useMutation(CART_LINE_ADD);
+    const { data, fetching, error } = addToCart[0];
     const addToCartMutation = addToCart[1];
 
     const handleCartAdd = (): void => {
@@ -29,6 +32,19 @@ export const AddToCart = (props: IAddToCartProps) => {
             quantity: quantity,
         }, getContext());
     }
+
+    useEffect(() => {
+        if (fetching) {
+            return;
+        }
+        if (error !== undefined) {
+            addMessage(MessageType.ERROR, "Unable to add to cart.");
+            return;
+        }
+        if (data !== undefined) {
+            addMessage(MessageType.SUCCESS, "Added item to cart!");
+        }
+    }, [data, fetching, error]);
     return (
         <> {!card ?
             <button onClick={() => handleCartAdd()} data-modal-hide="defaultModal" type="button" className="text-custom-gray-100 button-background focus:outline-none focus:ring-4 font-black rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2">Add To Cart</button>

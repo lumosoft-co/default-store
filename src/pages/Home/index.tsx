@@ -15,7 +15,8 @@ export const Home = () => {
     const { showLogIn, setShowLogIn } = useContext(LoginContext) as ILoginContext;
     return (
         <div className="relative mx-auto max-w-[90rem] h-100">
-            <div className="sm:px-6 lg:px-12 relative">
+            <div className="w-[70rem] h-[70rem] opacity-30 absolute radial-background top-[-10rem] left-[30rem]"/>
+            <div className="sm:px-6 lg:px-12 relative z-50">
                 <Modal
                     open={showLogIn}
                     onClose={() => setShowLogIn(false)}
@@ -26,7 +27,7 @@ export const Home = () => {
                     showLogin={() => setShowLogIn(true)}
                 />
                 <Slider/>
-                <div className="h-10"/>
+                <div className="h-16"/>
                 <ItemsFeature
                     title="Popular Items"
                     caption="Explore the community's most loved items"

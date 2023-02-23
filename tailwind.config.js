@@ -24,7 +24,7 @@ module.exports = {
         "300": "#eeedfd"
       },
       "theme-color": {
-        "500": "#242132",
+        "500": "#1d1b29",
       },
       "custom-purple": {
         "500": "#B189FF",

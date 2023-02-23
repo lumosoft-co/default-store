@@ -9,13 +9,21 @@
         overflow-x: hidden;
         @apply font-poppins;
         -moz-osx-font-smoothing: grayscale;
-        background-color: #242132;
+        background-color: #1d1b29;
     }
 }
 
 @layer utilities {
+    .radial-background {
+        background: radial-gradient(50% 50% at 50% 50%, #403A62 0%, rgba(36, 33, 50, 0) 100%);
+    }
+
     .background-clip {
         -webkit-background-clip: text;
+    }
+
+    .border-color {
+        border-image: linear-gradient(153.95deg, #AC88FF 2.05%, #8D87FF 95.95%);
     }
 
     .button-background {

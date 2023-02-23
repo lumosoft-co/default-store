@@ -39,7 +39,7 @@ export const ItemsFeature = (props: IFeatureProps) => {
             <h2 className="text-custom-gray-300 text-md md:text-lg font-medium">{caption}</h2>
             <div className="h-10"/>
             <div className={`grid grid-cols-5 gap-10 place-items-center`}>
-                {(!fetching && !error) ? byString(data, field)?.map((item: IFeatureItem, i: number) => {
+                {(!fetching && !error) ? byString(data, field)?.slice(0, 5).map((item: IFeatureItem, i: number) => {
                     return (
                         <Card 
                             key={i}

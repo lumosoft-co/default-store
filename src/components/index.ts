@@ -8,3 +8,4 @@ export { CartIcon } from './CartIcon';
 export { Cart } from './Cart';
 export { AddToCart } from './AddToCart';
 export { Ranks } from './Ranks';
+export { Alert } from "./Alert";

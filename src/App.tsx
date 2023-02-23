@@ -4,6 +4,7 @@ import {
   Route
 } from 'react-router-dom';
 import { client } from './graphql';
+import { Alert } from './components';
 
 import {
   Provider,
@@ -11,18 +12,25 @@ import {
 import AppProvider from './context';
 import useRoutes from './hooks/useRoutes';
 
+import { SnackBarContext, ISnackBarMessage, ISnackBarContext } from './context/SnackBar';
+import { useContext } from 'react';
+
 function App() {
   const [routes, fetching] = useRoutes();
+  const { snackBar } = useContext(SnackBarContext) as ISnackBarContext;
 
   return (
     <div className="App bg-theme-color-500 h-100 w-100">
-      <Provider value={client}>
-        <AppProvider>
-          <Routes>
-            {!fetching ? routes.map((route: RouteProps, i) => <Route key={i} {...route} />) : []}
-          </Routes>
-        </AppProvider>
-      </Provider>
+      <Routes>
+        {!fetching ? routes.map((route: RouteProps, i) => <Route key={i} {...route} />) : []}
+      </Routes>
+      {snackBar.map((alert: ISnackBarMessage) => {
+        return (
+          <div className="absolute right-0 bottom-0">
+            <Alert {...alert} />
+          </div>
+        );
+      })}
     </div>
   );
 }

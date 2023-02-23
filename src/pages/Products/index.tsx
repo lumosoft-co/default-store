@@ -27,7 +27,6 @@ export const Products = (props: IProductsPageProps) => {
                 <Navigation
                     showLogin={() => setShowLogIn(true)}
                 />
-                <Cart />
                 <div className="h-5"/>
                 <ItemsFeature
                     title={title}
@@ -36,6 +35,7 @@ export const Products = (props: IProductsPageProps) => {
                     variables={variables}
                     field={field}
                 />
+                <Cart />
             </div>
         </div>
     )

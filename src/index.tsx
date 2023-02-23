@@ -4,6 +4,8 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import "./styles/tailwind.generated.css";
 
+import AppProvider from './context';
+
 import { Provider } from 'urql';
 import { client } from './graphql';
 
@@ -14,7 +16,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider value={client}>
-        <App />
+        <AppProvider>
+          <App />
+        </AppProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

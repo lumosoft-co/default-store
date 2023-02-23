@@ -11,7 +11,7 @@ export const Card = (props: IFeatureItem) => {
     return (
         <div className="px-7 py-5 relative bg-card-background-500 rounded-3xl border-[7px] border-custom-purple-600 h-[20rem]">
             <div className="absolute text-sm left-0 top-0 pt-1 pl-1 pr-2 pb-2 bg-custom-purple-600 rounded-br-2xl rounded-tl-2xl text-custom-gray-100 text-opacity-90 font-black">
-                ${price.price}
+                {(price.price === '0.00') ? "Free" : `$${price.price}`}
             </div>
             <a onClick={() => setViewDetails(true)} className="absolute right-0 top-0 p-2 rounded-lg text-custom-gray-200 cursor-pointer font-black hover:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
