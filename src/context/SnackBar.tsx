@@ -22,6 +22,9 @@ const SnackBarProvider = ({ children }: any) => {
     const [snackBar, setSnackBar] = React.useState<ISnackBarMessage[]>([]);
 
     const addMessage = (type: MessageType, message: string) => {
+        if (snackBar.length > 0 && message === snackBar[0].message) {
+            return;
+        }
         setSnackBar([...snackBar, {type, message}]);
     }
 

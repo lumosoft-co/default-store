@@ -26,7 +26,7 @@ function App() {
       </Routes>
       {snackBar.map((alert: ISnackBarMessage) => {
         return (
-          <div className="absolute right-0 bottom-0">
+          <div className="fixed z-50 right-0 bottom-0">
             <Alert {...alert} />
           </div>
         );
