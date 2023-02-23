@@ -16,7 +16,7 @@ import { SnackBarContext, ISnackBarMessage, ISnackBarContext } from './context/S
 import { useContext } from 'react';
 
 function App() {
-  const [routes, fetching] = useRoutes();
+  const [routes, fetching] = useRoutes(false);
   const { snackBar } = useContext(SnackBarContext) as ISnackBarContext;
 
   return (

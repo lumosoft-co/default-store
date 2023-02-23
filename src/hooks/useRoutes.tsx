@@ -26,7 +26,7 @@ export interface ICategories {
     categories: ICategory[];
 }
 
-const useRoutes = (): [routes: RouteProps[], fetching: boolean] => {
+const useRoutes = (createPages: boolean): [routes: RouteProps[], fetching: boolean] => {
     const [routes, setRoutes] = useState<RouteProps[]>([
         {
             path: '/',
@@ -42,7 +42,7 @@ const useRoutes = (): [routes: RouteProps[], fetching: boolean] => {
     });
 
     useEffect(() => {
-        if (data === null || fetching || error !== undefined) {
+        if (data === null || fetching || error !== undefined || !createPages) {
             return;
         }
         const response = data as ICategories;

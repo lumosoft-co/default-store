@@ -30,7 +30,7 @@ module.exports = {
         "500": "#242132",
       },
       "custom-purple": {
-        "500": "#B189FF",
+        "500": "#8578E0",
         "600": "#a487ff"
       },
       "card-background": {

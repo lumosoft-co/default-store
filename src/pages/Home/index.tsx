@@ -54,17 +54,20 @@ export const Home = () => {
                     query={POPULAR_ITEMS}
                     field={"topProducts"}
                 />
-                {categories !== null ? categories.categories.map((category: ICategory) => {
+                {categories !== null ? categories.categories.map((category: ICategory, i) => {
                     return (
                         <>
-                        <div className="h-16" />
-                        <ItemsFeature
-                            title={category.title}
-                            caption={category.description}
-                            query={CATEGORY_QUERY}
-                            variables={{ category: `${category.handle}` }}
-                            field={"categoryByHandle.products"}
-                        />
+                            <div className="h-16" />
+                            <div id={category.handle}>
+                                <ItemsFeature
+                                    key={i}
+                                    title={category.title}
+                                    caption={category.description}
+                                    query={CATEGORY_QUERY}
+                                    variables={{ category: `${category.handle}` }}
+                                    field={"categoryByHandle.products"}
+                                />
+                            </div>
                         </>
                     )
                 })
