@@ -37,7 +37,7 @@ export const Navigation = (props: INavigationProps) => {
     }
 
     useEffect(() => {
-        if (data === undefined || error !== undefined || fetching) 
+        if (data === undefined || error !== undefined || fetching)
             return;
         setResponse(data as INavigation);
     }, [data]);
@@ -66,13 +66,18 @@ export const Navigation = (props: INavigationProps) => {
                     })}
                 </nav>
                 <div className="float-right flex flex-row">
+                    <a className="cursor-pointer mr-6" onClick={handleCartClick}>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>
+                    </a>
                     <a className="cursor-pointer mr-5" onClick={handleCartClick}>
-                        <CartIcon/>
+                        <CartIcon />
                     </a>
                     {
                         cartID === null ?
-                        <a x-comp="PrimaryButtonLink" onClick={() => showLogin()} className="button-background -mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-black text-white-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Login</a>
-                        : <a x-comp="PrimaryButtonLink" onClick={() => handleLogout()} className="button-background -mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-black text-white-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Logout</a>
+                            <a x-comp="PrimaryButtonLink" onClick={() => showLogin()} className="button-background -mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-black text-white-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Login</a>
+                            : <a x-comp="PrimaryButtonLink" onClick={() => handleLogout()} className="button-background -mt-[9px] md:-mt-[8px] inline-flex items-center cursor-pointer justify-center text-[14px] md:text-[16px] xl:text-d-p-lg h-11 box-border rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent font-black text-white-500 hover:bg-opacity-100 hover:text-custom-white-500 focus:bg-opacity-100 focus:text-custom-white-500 w-[90px] md:w-[118px] transition-colors duration-200 xl:order-1">Logout</a>
                     }
                 </div>
             </header>

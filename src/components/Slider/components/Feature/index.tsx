@@ -33,7 +33,7 @@ export const Feature = (props: IFeature) => {
                 <div className="h-5" />
                 <h2 className="w-[88%] text-custom-gray-300 text-md md:text-xl font-medium">{trimmed.substring(0, Math.min(trimmed.length, trimmed.lastIndexOf(" ")))}{extractedContent.length > LENGTH ? "..." : ""}</h2>
                 <div className="h-7"/>
-                <button className="text-custom-gray-100 button-background focus:outline-none focus:ring-4 font-black rounded-full text-md px-5 py-2.5 text-center mr-2 mb-2" onClick={() => setViewDetails(true)}>More Details</button>
+                <button className="button-hover text-custom-gray-100 button-background focus:outline-none focus:ring-4 font-black rounded-full text-md px-5 py-2.5 text-center mr-2 mb-2" onClick={() => setViewDetails(true)}>More Details</button>
             </div>
             <div className="image-holder relative flex items-center justify-center">
                 <img

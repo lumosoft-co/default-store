@@ -9,11 +9,21 @@
         overflow-x: hidden;
         @apply font-poppins;
         -moz-osx-font-smoothing: grayscale;
-        background-color: #1d1b29;
+        background-color: #242132;
     }
 }
 
 @layer utilities {
+
+    .button-hover{
+        transition: all .15s ease 0s;
+        box-shadow: 0 5px 10px rgba(0,0,0,.1);
+    }
+
+    .button-hover:hover {
+        transform: translateY(-1.5px);
+    }
+
     .radial-background {
         background: radial-gradient(50% 50% at 50% 50%, #403A62 0%, rgba(36, 33, 50, 0) 100%);
     }
