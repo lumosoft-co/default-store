@@ -1,12 +1,19 @@
+import { ISearchContext, SearchContext } from "../../../../context/SearchContext";
 import { AddToCart } from "../../../AddToCart";
 import { ItemDetails } from "../../../ItemDetails";
 import { IFeatureItem } from "./types";
 
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 
 export const Card = (props: IFeatureItem) => {
+    const { updateItems } = useContext(SearchContext) as ISearchContext;
+
     const { id, title, price, image, handle } = props;
     const [viewDetails, setViewDetails] = useState<boolean>(false);
+
+    useEffect(() => {
+        updateItems(props);
+    }, [props]);
 
     return (
         <div className="px-7 py-5 relative bg-card-background-500 rounded-3xl border-[7px] border-custom-purple-600 h-[20rem]">

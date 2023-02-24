@@ -4,7 +4,8 @@ import {
     Cart,
     Login,
     ItemsFeature,
-    Ranks
+    Ranks,
+    Search
 } from "../../components";
 import { POPULAR_ITEMS, CATEGORIES_QUERY, CATEGORY_QUERY } from "../../graphql";
 import { Modal } from "@mui/material";
@@ -73,6 +74,7 @@ export const Home = () => {
                 })
                     : <div>Loading...</div>
                 }
+                <Search/>
                 <Cart />
                 <div className="h-12" />
             </div>
