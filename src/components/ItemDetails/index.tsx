@@ -35,7 +35,7 @@ export const ItemDetails = (props: IItemDetailsProps) => {
                 onClose={() => setViewDetails(false)}
             >
                 <section className="relative w-full h-full mx-auto max-w-2xl flex justify-center items-center">
-                    <div className="relative bg-theme-color-500 rounded-lg shadow border border-custom-gray-500">
+                    <div className="relative bg-theme-color-500 rounded-2xl drop-shadow-xl border-l-8 border-8 border-custom-gray-600">
                     { !fetching && details !== undefined ?
                       <>
                         <div className="flex items-start justify-between p-4">

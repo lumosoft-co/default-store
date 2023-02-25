@@ -72,7 +72,7 @@ export const Login = () => {
     }, [data, error, fetching]);
 
     return (
-        <section className="relative w-full h-full mx-auto max-w-2xl md:h-auto">
+        <section className="relative w-full h-full mx-auto max-w-2xl flex justify-center items-center">
             <div className="bg-white rounded-xl p-14">
                 <h1>Login</h1>
                 <input
