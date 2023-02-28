@@ -2,7 +2,7 @@ import React from "react";
 import { IFeatureItem } from "../components/ItemsFeature/components/Card/types";
 
 export interface ISearchContext {
-    items: IFeatureItem[];
+    items: Set<IFeatureItem>;
     openSearch: boolean;
     openSearchModal: (set: boolean) => void;
     updateItems: (item: IFeatureItem) => void;
@@ -12,19 +12,23 @@ export interface ISearchContext {
 export const SearchContext = React.createContext<ISearchContext | null>(null)
 
 const SearchProvider = ({ children }: any) => {
-    const [items, setItems] = React.useState<IFeatureItem[]>([]);
+    const [items, setItems] = React.useState<Set<IFeatureItem>>(new Set());
     const [openSearch, setOpenSearch] = React.useState<boolean>(false);
 
     const updateItems = (item: IFeatureItem) => {
-        setItems([...items, item]);
+        setItems(new Set(items.add(item)));
     }
+
+    const getRecommendedProducts = (product: string) => {
+        
+    };
 
     const searchItems = (query: string): IFeatureItem[] => {
         console.log(items)
         if (query === "") {
             return [];
         }
-        return items.filter((item: IFeatureItem) => item.handle.includes(query));
+        return Array.from(items).filter((item: IFeatureItem) => item.handle.includes(query));
     }
 
     const openSearchModal = (set: boolean) => {

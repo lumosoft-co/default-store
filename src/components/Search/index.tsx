@@ -28,9 +28,9 @@ export const Search = () => {
                         return (
                             <>
                                 <div className="h-3" />
-                                <div className="p-5 rounded-2xl bg-gray-700 flex flex-row">
+                                <div className="p-5 rounded-2xl bg-card-background-500 border border-custom-purple-500 flex flex-row">
                                     <img
-                                        className="object-contain h-18 w-18"
+                                        className="object-contain h-5 w-5"
                                         src={item.image}
                                         alt={item.title}
                                     />
