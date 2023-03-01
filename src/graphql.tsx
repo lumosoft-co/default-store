@@ -87,6 +87,15 @@ query Product($product: String!) {
       purchaseTypes
     }
     image
+  },
+  recommendedProducts(handle: $product) {
+    title
+    price {
+      price
+      listPrice
+      purchaseTypes
+    }
+    image
   }
 }
 `

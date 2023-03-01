@@ -19,10 +19,6 @@ const SearchProvider = ({ children }: any) => {
         setItems(new Set(items.add(item)));
     }
 
-    const getRecommendedProducts = (product: string) => {
-        
-    };
-
     const searchItems = (query: string): IFeatureItem[] => {
         console.log(items)
         if (query === "") {
